@@ -17,7 +17,12 @@
 #define buzzer 6
 #define Thermistor_PIN A0
 
-struct GraphPoints
+#define MAXTEMP 270
+
+struct GraphPoints {
+  int Temperature;// temperature in devrees celsius
+  int timeStamp;//time in seconds
+  };
 
 
 int tempC = 0;
@@ -41,6 +46,17 @@ initializeInput(but_plus,but_min,but_menu,but_exit,SSR,buzzer,Thermistor_PIN);
 //initializePID();
 initializeDisplay();
 
+struct GraphPoints Lead_Paste[4];
+
+Lead_Paste[0].Temperature = 150;
+Lead_Paste[1].Temperature = 180;
+Lead_Paste[2].Temperature = 230;
+Lead_Paste[3].Temperature = 250;
+
+Lead_Paste[0].timeStamp = 90;
+Lead_Paste[1].timeStamp = 180;
+Lead_Paste[2].timeStamp = 225;
+Lead_Paste[3].timeStamp = 255;
 
 }
 
