@@ -27,7 +27,10 @@ struct GraphPoints {
 
 int tempC = 0;
 bool buttonstate[4];
-unsigned long millisPrevious;
+uint64_t millisPrevious;
+uint64_t millisStart;
+uint64_t millisGraph;
+
 uint8_t CurrentMenu = 0;
 bool PWM_OUT = 0;
 
@@ -57,9 +60,21 @@ Lead_Paste[3] = {245, 255};
 
 void loop() {
   // put your main code here, to run repeatedly:
-  DisplayMenu(CurrentMenu, tempC, Selectcounter); 
+
   tempC = GetTemperatureCelsius(Thermistor_PIN);
-  
+  millisGraph = (millis()-millisStart);
+
+
+  switch (CurrentMenu){
+  case 1:
+  DisplayMenu(CurrentMenu, tempC, Selectcounter); 
+  break;
+  case 3:
+  DisplayMenu(CurrentMenu, CalculateGraphpoint(GraphPoints Lead_paste[], millisGraph), millisGraph); 
+  break;
+
+  }
+
   if(millis()>= (millisPrevious+3000)){
   if(PWM_OUT){
     digitalWrite(SSR, HIGH);
@@ -86,9 +101,16 @@ void loop() {
   Selectcounter =0;
   }
   if(digitalRead(but_exit)==0){ //check button
-    PWM_OUT = 200;
-  }else{
-    PWM_OUT = 0;
+  switch (CurrentMenu){ //check what menu we are in
+  case 0:
+  CurrentMenu=3;
+  millisStart	= millis();
+  break;
+  
+  default:
+  break;
+
+
   }
   if(CheckInput(but_plus,&lastButtonStateFalling)){ //check button
   Selectcounter +=10;
