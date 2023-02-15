@@ -2,6 +2,12 @@
 #pragma once
 #include <thermistor.h> 
 
+struct GraphPoints {
+  int Temperature; // temperature in degrees Celsius
+  int timeStamp;   // time in seconds
+};
+
+extern GraphPoints Lead_Paste[];
 
 int GetTemperatureCelsius(int pin){
 thermistor therm1(pin,0);
@@ -31,7 +37,7 @@ for(int i =0; i <=3; i++){
     slope = (float)deltaTemp/deltaTime;
     //b = Ax-y
     YOffset = ((slope*Solder[i].timeStamp)-Solder[i].Temperature);
-    Setpoint = (float)(slope*TimeInterval+YOffset)
+    Setpoint = (float)(slope*TimeInterval+YOffset);
 
     break;
     }
