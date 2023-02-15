@@ -31,6 +31,7 @@ uint64_t millisGraph;
 
 uint8_t CurrentMenu = 0;
 bool PWM_OUT = 0;
+uint16_t setpoint = 0;
 
 int lastButtonStateFalling;
 int lastButtonStateFalling2;
@@ -45,7 +46,7 @@ void setup() {
 }
 
 void loop() {
-  tempC = GetTemperatureCelsius(Thermistor_PIN);
+  
   millisGraph = millis() - millisStart;
 
   switch (CurrentMenu){
@@ -56,11 +57,13 @@ void loop() {
       DisplayMenu(CurrentMenu, tempC, Selectcounter); 
       break;
     case 3:
-      DisplayMenu(CurrentMenu, CalculateGraphpoint(Lead_Paste, millisGraph), millisGraph); 
+      DisplayMenu(CurrentMenu, setpoint, millisGraph); 
       break;
   }
 
-  if(millis() >= (millisPrevious + 3000)){
+  if(millis() >= (millisPrevious + 1000)){
+    tempC = GetTemperatureCelsius(Thermistor_PIN);
+    setpoint = CalculateGraphpoint(Lead_Paste, 20);
     if(PWM_OUT){
       digitalWrite(SSR, HIGH);
     } else {

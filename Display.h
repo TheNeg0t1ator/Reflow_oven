@@ -49,6 +49,7 @@ void DisplayMenu(uint8_t MenuNumber, int getal1, int getal2){
 switch (MenuNumber){
 case 0:
 DisplayString(0,0,"Start or Select?");
+DisplayString(0,1,"Graph     Graph ");
 break;
 
 case 1:
