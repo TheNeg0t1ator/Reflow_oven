@@ -49,6 +49,9 @@ void loop() {
   millisGraph = millis() - millisStart;
 
   switch (CurrentMenu){
+    case 0:
+      DisplayMenu(CurrentMenu, tempC, Selectcounter); 
+      break;
     case 1:
       DisplayMenu(CurrentMenu, tempC, Selectcounter); 
       break;
@@ -88,7 +91,9 @@ void loop() {
       default:
         break;
     }
-
+    ClearDisplay();
+    Selectcounter = 0;
+  }
     if(CheckInput(but_plus, &lastButtonStateFalling)){
       Selectcounter += 10;
     }
@@ -96,7 +101,7 @@ void loop() {
     if(CheckInput(but_min, &lastButtonStateFalling2)){
       Selectcounter -= 10;
     }
-  }
+  
 
   //DoOutput();
 

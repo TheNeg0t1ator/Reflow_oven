@@ -59,8 +59,8 @@ break;
 case 3:
 DisplayString(0,0, "temp:");
 DisplayString(10,0,"tijd:");
-DisplayInt(0,0, getal1);
-DisplayInt(0,0, getal2);
+DisplayInt(0,1, getal1);
+DisplayInt(0,1, getal2);
 break;
 
 default:
