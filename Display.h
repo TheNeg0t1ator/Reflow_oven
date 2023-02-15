@@ -35,6 +35,16 @@ void ClearDisplay(void){
 }
 
 void DisplayMenu(uint8_t MenuNumber, int getal1, int getal2){
+//MenuNumbers
+/*
+0   basismenu
+1   selectiemenu voor temperaturen
+2   selectiemenu voor tijden
+3   graphtestmenu
+
+*/
+
+
 
 switch (MenuNumber){
 case 0:
@@ -44,6 +54,13 @@ break;
 case 1:
 DisplayInt(0,1,getal1);  
 DisplayInt(13,1,getal2);
+break;
+
+case 3:
+DisplayString(0,0, "temp:");
+DisplayString(10,0,"tijd:");
+DisplayInt(0,0, getal1);
+DisplayInt(0,0, getal2);
 break;
 
 default:
