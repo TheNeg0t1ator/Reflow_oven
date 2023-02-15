@@ -16,14 +16,22 @@ float Setpoint =0;
 float YOffset =0;
 int deltaTemp=0;
 int deltaTime=0;
+float slope =0;
 
 for(int i =0; i <=3; i++){
 if(Solder[i].timeStamp<= TimeInterval){
-deltaTime = Solder[i+1].timeStamp - Solder[i].timeStamp;
-deltaTemp = Solder[i+1].Temperature - Solder[i].Temperature;
-YOffset =  
 
-Setpoint = (float)((deltaTemp/deltaTime)*TimeInterval);
+deltaTime = Solder[i+1].timeStamp - Solder[i].timeStamp;
+
+deltaTemp = Solder[i+1].Temperature - Solder[i].Temperature;
+
+slope = (float)deltaTemp/deltaTime;
+
+//b = Ax-y
+YOffset = ((slope*Solder[i].timeStamp)-Solder[i].Temperature);
+
+Setpoint = (float)(slope*TimeInterval+YOffset)
+
 break;
 }
 }
