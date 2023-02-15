@@ -42,19 +42,21 @@ int lastButtonStateFalling4;
 //char temperature[5];
 int Selectcounter =0;
 
+//struct GraphPoints Lead_Paste[4];
+
+struct GraphPoints Lead_Paste[] = {
+  {150, 90},
+  {180, 180},
+  {245, 225},
+  {245, 255}
+};
+
 void setup() {
   // put your setup code here, to run once:
 
 initializeInput(but_plus,but_min,but_menu,but_exit,SSR,buzzer,Thermistor_PIN);
 //initializePID();
 initializeDisplay();
-
-struct GraphPoints Lead_Paste[4];
-
-Lead_Paste[0] = {150/*temp*/,90/*time*/};
-Lead_Paste[1] = {180, 180};
-Lead_Paste[2] = {245, 225};
-Lead_Paste[3] = {245, 255};
 
 }
 
@@ -70,7 +72,7 @@ void loop() {
   DisplayMenu(CurrentMenu, tempC, Selectcounter); 
   break;
   case 3:
-  DisplayMenu(CurrentMenu, CalculateGraphpoint(GraphPoints Lead_paste[], millisGraph), millisGraph); 
+  DisplayMenu(CurrentMenu, CalculateGraphpoint(Lead_Paste, millisGraph), millisGraph); 
   break;
 
   }
