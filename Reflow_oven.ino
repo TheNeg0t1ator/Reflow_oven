@@ -48,15 +48,10 @@ initializeDisplay();
 
 struct GraphPoints Lead_Paste[4];
 
-Lead_Paste[0].Temperature = 150;
-Lead_Paste[1].Temperature = 180;
-Lead_Paste[2].Temperature = 230;
-Lead_Paste[3].Temperature = 250;
-
-Lead_Paste[0].timeStamp = 90;
-Lead_Paste[1].timeStamp = 180;
-Lead_Paste[2].timeStamp = 225;
-Lead_Paste[3].timeStamp = 255;
+Lead_Paste[0] = {150/*temp*/,90/*time*/};
+Lead_Paste[1] = {180, 180};
+Lead_Paste[2] = {245, 225};
+Lead_Paste[3] = {245, 255};
 
 }
 
