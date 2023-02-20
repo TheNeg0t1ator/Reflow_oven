@@ -17,18 +17,19 @@ return therm1.analog2temp();
 
 
 
-float CalculateGraphpoint(struct GraphPoints Solder[5], int TimeInterval){
+float CalculateGraphpoint(struct GraphPoints Solder[], int TimeInterval, int ArraySize){
+ArraySize--;
 float Setpoint =0;
 float YOffset =0;
 int deltaTemp=0;
 int deltaTime=0;
 float slope =0;
 
-if(TimeInterval>=Solder[4].timeStamp){
+if(TimeInterval>=Solder[ArraySize].timeStamp){
     Setpoint = 0;
 }else{
 
-for(int i =0; i <=4; i++){
+for(int i =0; i <=ArraySize; i++){
 
     if((Solder[i].timeStamp<= TimeInterval) && (Solder[i+1].timeStamp>= TimeInterval)){
 
@@ -36,7 +37,8 @@ for(int i =0; i <=4; i++){
     deltaTemp = Solder[i+1].Temperature - Solder[i].Temperature;
     slope = (float)deltaTemp/deltaTime;
     //b = Ax-y
-    YOffset = ((slope*Solder[i].timeStamp)-Solder[i].Temperature);
+    YOffset = (Solder[i].Temperature - (slope*Solder[i].timeStamp));
+    //YOffset*=(-1);
     Setpoint = (float)(slope*TimeInterval+YOffset);
 
     break;
