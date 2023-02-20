@@ -21,3 +21,5 @@ GraphPoints Lead_Paste[] = {
   {245, 225},
   {245, 255}
 };
+
+link to geogebra: https://www.geogebra.org/calculator/jdvmpuhz
