@@ -72,7 +72,7 @@ void loop() {
 
   if(millis() >= (millisPrevious + 1000)){
     tempC = GetTemperatureCelsius(Thermistor_PIN);
-    setpoint = CalculateGraphpoint(Lead_Paste, 50,sizeof(Lead_Paste) / sizeof(struct GraphPoints));
+    setpoint = CalculateGraphpoint(Lead_Paste, 50, sizeof(Lead_Paste) / sizeof(struct GraphPoints));
     if(PWM_OUT){
       digitalWrite(SSR, HIGH);
     } else {
