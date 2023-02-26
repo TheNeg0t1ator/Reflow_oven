@@ -32,6 +32,7 @@ uint64_t millisGraph;
 
 uint8_t CurrentMenu = 0;
 bool PWM_OUT = 0;
+bool OutputLoop = 0;
 uint16_t setpoint = 0;
 
 int lastButtonStateFalling;
@@ -59,8 +60,15 @@ void loop() {
       break;
     case 3:
       DisplayMenu(CurrentMenu, setpoint, millisGraph); 
+      OutputLoop = 1;
+      break;
+      default:
+      OutputLoop = 0;
       break;
   }
+
+  
+  
 
   if(millis() >= (millisPrevious + 1000)){
     tempC = GetTemperatureCelsius(Thermistor_PIN);
@@ -70,6 +78,17 @@ void loop() {
     } else {
       digitalWrite(SSR, LOW);
     }
+    
+    if (OutputLoop)
+  {
+    if (setpoint > tempC )
+    {
+      PWM_OUT = 1;
+    }else{
+      PWM_OUT = 0;
+    }
+    
+  }
     millisPrevious = millis();        
   }
 

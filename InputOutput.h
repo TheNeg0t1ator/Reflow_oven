@@ -29,3 +29,5 @@ bool CheckInput(int pin,int *lastButtonStateFalling){
   *lastButtonStateFalling = buttonStateFalling;
   return Outputbool;
 }
+
+
